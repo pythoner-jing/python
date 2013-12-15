@@ -1,2 +1,3 @@
 [dmzj]
-url = http://manhua.dmzj.com 
+root = http://manhua.dmzj.com 
+update = http://manhua.dmzj.com/update_
