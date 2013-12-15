@@ -13,14 +13,6 @@ regex5 = re.compile(r"a\s+target=\'[^\']+\'\s+title=\"([^(\")]+)\"\s+href=\"([^\
 regex6 = re.compile(r"^\/([^\/]+/)")
 regex7 = re.compile(r"\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}")
 
-#regex = re.compile(r"img\s+src=([^\s]+)\s+alt=([^\/]+)")
-#regex2 = re.compile(r"span\s+class=\"gray12\">([^<]+)")
-#regex3 = re.compile(r"a\s+href=[^\s]+\s+target=[^\s]+\s+title=[^\s]+\s+class=[^>]+>([^<]+)")
-#regex4 = re.compile(r"<li>([^<]+)")
-#regex5 = re.compile(r"a\s+target=[^s]+\s+title=[^\s]+\s+href=([^>]+)>([^<]+)")
-#regex6 = re.compile(r"^\/([^\/]+/)")
-#regex7 = re.compile(r"\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}")
-
 conf = ConfigParser.ConfigParser()
 conf.read("conf_comic")
 section = "dmzj"
