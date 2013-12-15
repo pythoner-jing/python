@@ -5,13 +5,21 @@ import re, ConfigParser, urllib2, threading, time
 
 time_start = time.time()
 
-regex = re.compile(r"img\s+src=([^\s]+)\s+alt=([^\/]+)")
+regex = re.compile(r"img\s+src=\"([^\"]+)\"\s+alt=\"([^\"]+)")
 regex2 = re.compile(r"span\s+class=\"gray12\">([^<]+)")
-regex3 = re.compile(r"a\s+href=[^\s]+\s+target=[^\s]+\s+title=[^\s]+\s+class=[^>]+>([^<]+)")
-regex4 = re.compile(r"<li>([^<]+)")
-regex5 = re.compile(r"a\s+target=[^s]+\s+title=[^\s]+\s+href=([^>]+)>([^<]+)")
+regex3 = re.compile(r"a\s+href=\"[^\"]+\"\s+target=\"[^\"]+\"\s+title=\"[^\"]+\"\s+class=\"[^\"]\"\s+>([^<]+)")
+regex4 = re.compile(r"<li>([^<\+]+)")
+regex5 = re.compile(r"a\s+target=\'[^\']+\'\s+title=\"([^(\")]+)\"\s+href=\"([^\"]+)\"s*>")
 regex6 = re.compile(r"^\/([^\/]+/)")
 regex7 = re.compile(r"\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}")
+
+#regex = re.compile(r"img\s+src=([^\s]+)\s+alt=([^\/]+)")
+#regex2 = re.compile(r"span\s+class=\"gray12\">([^<]+)")
+#regex3 = re.compile(r"a\s+href=[^\s]+\s+target=[^\s]+\s+title=[^\s]+\s+class=[^>]+>([^<]+)")
+#regex4 = re.compile(r"<li>([^<]+)")
+#regex5 = re.compile(r"a\s+target=[^s]+\s+title=[^\s]+\s+href=([^>]+)>([^<]+)")
+#regex6 = re.compile(r"^\/([^\/]+/)")
+#regex7 = re.compile(r"\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}")
 
 conf = ConfigParser.ConfigParser()
 conf.read("conf_comic")
@@ -47,7 +55,7 @@ class FetchUpdateList(threading.Thread):
 		
 			#封面图片地址，漫画名
 			for x in regex.findall(content):
-				self.data.append([x[0].replace("\"", ""), x[1].replace("\"", ""), "2", "3", "4", "5", "6", "7", "8"])
+				self.data.append([x[0], x[1], "2", "3", "4", "5", "6", "7", "8"])
 
 			self.maxsize = len(self.data)
 			
@@ -64,9 +72,9 @@ class FetchUpdateList(threading.Thread):
 					elif(i == 4):
 						self.data[p][4] = x
 						p += 1
-					elif(i % 3 == 1):
-						self.data[p][3] = x
 					elif(i % 3 == 2):
+						self.data[p][3] = x
+					elif(i % 3 == 1):
 						self.data[p][4] = x
 						p += 1
 	
@@ -75,9 +83,9 @@ class FetchUpdateList(threading.Thread):
 				
 			#更新卷
 			for i, x in enumerate(regex5.findall(content)):
-				self.data[i][5] = cfgDmjz["root"] + x[0].replace("\"", "")
-				self.data[i][6] = x[1]
-				self.data[i][7] = cfgDmjz["root"] + "/" + regex6.findall(x[0].replace("\"", ""))[0]
+				self.data[i][5] = cfgDmjz["root"] + x[1]
+				self.data[i][6] = x[0]
+				self.data[i][7] = cfgDmjz["root"] + "/" + regex6.findall(x[1])[0]
 
 
 			#更新时间
@@ -85,7 +93,8 @@ class FetchUpdateList(threading.Thread):
 				self.data[i][8] = x
 
 		except Exception, e:
-			pass
+			#pass
+			print e
 
 thread_pool = []
 for i, x in enumerate(update_list):
