@@ -47,7 +47,7 @@ class FetchUpdateList(threading.Thread):
 		
 			#封面图片地址，漫画名
 			for x in regex.findall(content):
-				self.data.append([x[0].replace("\"", ""), x[1].replace("\"", ""), 2, 3, 4, 5, 6, 7, 8])
+				self.data.append([x[0].replace("\"", ""), x[1].replace("\"", ""), "2", "3", "4", "5", "6", "7", "8"])
 
 			self.maxsize = len(self.data)
 			
