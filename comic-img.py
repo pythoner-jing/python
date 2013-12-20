@@ -6,6 +6,8 @@ import re, urllib, urllib2, cookielib, ConfigParser, string
 regex = re.compile(r"return p}.+\[(.+)\]")
 regex2 = re.compile(r"\'([\w+\|]+)\'")
 regex3 = re.compile(r"%\w")
+regex4 = re.compile(r"g_comic_url\s=\s\"(.+)\"")
+#var g_comic_url = "weilian/";
 
 conf = ConfigParser.ConfigParser()
 conf.read("conf_comic")
@@ -20,7 +22,7 @@ content = socket.read()
 socket.close()
 
 rs = regex.findall(content)[0]
-shortcut = rs[1]
+shortcut = regex4.findall(content)[0][0]
 urls = map(lambda x : x[2:-1], rs.replace("\\", "").split(","))
 
 codes = regex2.findall(content)[1].split("|")
