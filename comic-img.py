@@ -7,7 +7,6 @@ regex = re.compile(r"return p}.+\[(.+)\]")
 regex2 = re.compile(r"\'([\w+\|]+)\'")
 regex3 = re.compile(r"%\w")
 regex4 = re.compile(r"g_comic_url\s=\s\"(.+)\"")
-#var g_comic_url = "weilian/";
 
 conf = ConfigParser.ConfigParser()
 conf.read("conf_comic")
