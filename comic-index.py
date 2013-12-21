@@ -24,8 +24,6 @@ regex6 = re.compile(r"<li><a\stitle=\"[^\"]+\"\shref=\"([^\"]+)\"\s+class=\"colo
 regex7 = re.compile(r"<li><a\stitle=\"[^\"]+\"\shref=\"([^\"]+)\"\s*>(.+)</a></li>")
 #过滤最新章回
 regex8 = re.compile(r"g_last_update\s=\s\"([^\"]+)\"")
-#过滤最新章回
-regex9 = re.compile(r">(.+)<")
 
 url_test = "http://manhua.dmzj.com/meishidefulu/"
 
