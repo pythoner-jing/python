@@ -8,9 +8,6 @@
 
 import urllib2, urllib, re
 
-url_index = "http://manhua.dmzj.com/lxjgs/" 
-
-
 #过滤作者
 regex2 = re.compile(r"<td><a\shref=\'[^\']+\'>(.+)</a><br/></td>")
 #过滤漫画名
