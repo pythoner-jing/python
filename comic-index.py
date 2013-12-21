@@ -24,8 +24,10 @@ regex6 = re.compile(r"<li><a\stitle=\"[^\"]+\"\shref=\"([^\"]+)\"\s+class=\"colo
 regex7 = re.compile(r"<li><a\stitle=\"[^\"]+\"\shref=\"([^\"]+)\"\s*>(.+)</a></li>")
 #过滤最新章回
 regex8 = re.compile(r"g_last_update\s=\s\"([^\"]+)\"")
+#多作者情况过滤
+regex9 = re.compile(r"(<[^\>]+>)")
 
-url_test = "http://manhua.dmzj.com/meishidefulu/"
+url_test = "http://manhua.dmzj.com/miaogongzhu/"
 
 socket = urllib2.urlopen(url_test)
 content = socket.read()
@@ -46,6 +48,9 @@ for x in chapters0:
 
 for x in update:
 	chapters.append((x[0], x[1]))
+
+for x in regex9.findall(author):
+	author = author.replace(x, "")
 
 with open("output.txt", "w") as f:
 	f.write("封面 - " + cover + "\n")
