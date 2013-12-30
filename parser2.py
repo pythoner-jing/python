@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 #encoding:utf-8
 
-#div > p id = "da" > a text #div > p id = "da" > html 
 from sgmllib import SGMLParser 
 import urllib2, re
 
